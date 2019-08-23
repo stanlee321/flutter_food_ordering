@@ -13,38 +13,37 @@ class CartBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     CartModel cart = Provider.of<CartModel>(context);
-    return DraggableScrollableSheet(
-      initialChildSize: 1,
-      maxChildSize: 1,
-      minChildSize: 0.1,
-      builder: (context, scrollController) {
-        return Container(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                alignment: Alignment.center,
-                width: double.infinity,
-                child: Container(
-                  width: 90,
-                  height: 8,
-                  decoration: ShapeDecoration(shape: StadiumBorder(), color: Colors.black26),
-                ),
-              ),
-              buildTitle(cart),
-              Divider(),
-              if (cart.cartItems.length <= 0) noItemWidget() else buildItemsList(cart),
-              Divider(),
-              buildPriceInfo(cart),
-              SizedBox(height: 8),
-              addToCardButton(cart),
-            ],
+    // return DraggableScrollableSheet(
+    //   initialChildSize: 1,
+    //   maxChildSize: 1,
+    //   minChildSize: 0.5,
+    //   builder: (context, scrollController) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            alignment: Alignment.center,
+            width: double.infinity,
+            child: Container(
+              width: 90,
+              height: 8,
+              decoration: ShapeDecoration(shape: StadiumBorder(), color: Colors.black26),
+            ),
           ),
-        );
-      },
+          buildTitle(cart),
+          Divider(),
+          if (cart.cartItems.length <= 0) noItemWidget() else buildItemsList(cart),
+          Divider(),
+          buildPriceInfo(cart),
+          SizedBox(height: 8),
+          addToCardButton(cart),
+        ],
+      ),
     );
+    //});
   }
 
   Widget buildTitle(cart) {
@@ -109,7 +108,7 @@ class CartBottomSheet extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Text('Total:', style: titleStyle2),
-        Text('\$ $total', style: titleStyle),
+        Text('\$ ${total.toStringAsFixed(2)}', style: titleStyle),
       ],
     );
   }

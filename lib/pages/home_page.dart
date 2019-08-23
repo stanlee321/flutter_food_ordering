@@ -14,7 +14,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int value = 0;
 
-  showCard() {
+  showCart() {
     showModalBottomSheet(
       shape: roundedRectangle32,
       context: context,
@@ -42,12 +42,12 @@ class _MyHomePageState extends State<MyHomePage> {
     return SafeArea(
       child: Row(
         children: <Widget>[
-          Text('MENU', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          Text('MENU', style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
           Spacer(),
           IconButton(icon: Icon(Icons.search), onPressed: () {}),
           Stack(
             children: <Widget>[
-              IconButton(icon: Icon(Icons.shopping_cart), onPressed: showCard),
+              IconButton(icon: Icon(Icons.shopping_cart), onPressed: showCart),
               Positioned(
                 right: 0,
                 child: Container(
@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   decoration: BoxDecoration(shape: BoxShape.circle, color: mainColor),
                   child: Text(
                     '${Provider.of<CartModel>(context).cartItems.length}',
-                    style: TextStyle(fontSize: 10, color: Colors.black),
+                    style: TextStyle(fontSize: 12, color: Colors.black),
                   ),
                 ),
               ),
