@@ -39,6 +39,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget buildAppBar() {
+    int items = 0;
+    Provider.of<Cart>(context).cartItems.forEach((cart) {
+      items += cart.quantity;
+    });
     return SafeArea(
       child: Row(
         children: <Widget>[
@@ -55,7 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: EdgeInsets.all(4),
                   decoration: BoxDecoration(shape: BoxShape.circle, color: mainColor),
                   child: Text(
-                    '${Provider.of<CartModel>(context).cartItems.length}',
+                    '$items',
                     style: TextStyle(fontSize: 12, color: Colors.black),
                   ),
                 ),

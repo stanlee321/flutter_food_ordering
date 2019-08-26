@@ -20,7 +20,7 @@ List<String> foodTypes = [
 List<Food> foods = [
   Food(
     name: 'Vegetable and Poached Egg',
-    price: 13.5,
+    price: 10,
     rate: 3.0,
     rateCount: 15,
     image: 'https://keyassets-p2.timeincuk.net/wp/prod/wp-content/uploads/sites/53/2014/05/Poached-egg-and-bacon-salad-recipe-920x605.jpg',
@@ -28,7 +28,7 @@ List<Food> foods = [
   ),
   Food(
     name: 'Avocado Salad With Mayonoise Soy Sauce',
-    price: 12.99,
+    price: 20,
     rate: 2,
     rateCount: 25,
     image: 'https://ifoodreal.com/wp-content/uploads/2018/04/FG-avocado-salad.jpg',
@@ -36,7 +36,7 @@ List<Food> foods = [
   ),
   Food(
     name: 'Pancake With Orange Sauce',
-    price: 23.67,
+    price: 30,
     rate: 3,
     rateCount: 67,
     image: 'https://iowagirleats.com/wp-content/uploads/2013/01/OrangePancakes_02_mini.jpg',
@@ -44,18 +44,10 @@ List<Food> foods = [
   ),
   Food(
     name: 'Vegetables Salad',
-    price: 7.5,
+    price: 40,
     rate: 4,
     rateCount: 29,
     image: 'https://iowagirleats.com/wp-content/uploads/2016/06/Marinated-Vegetable-Salad-iowagirleats-03.jpg',
-    foodType: foodTypes[0],
-  ),
-  Food(
-    name: 'Vegetable and Poached Egg',
-    price: 13.5,
-    rate: 1,
-    rateCount: 15,
-    image: 'https://keyassets-p2.timeincuk.net/wp/prod/wp-content/uploads/sites/53/2014/05/Poached-egg-and-bacon-salad-recipe-920x605.jpg',
     foodType: foodTypes[0],
   ),
 ];

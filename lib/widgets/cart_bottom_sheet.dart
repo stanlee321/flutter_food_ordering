@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_food_ordering/constants/colors.dart';
 import 'package:flutter_food_ordering/model/cart_model.dart';
 import 'package:flutter_food_ordering/model/food_model.dart';
+import 'package:flutter_food_ordering/pages/checkout_page.dart';
 import 'package:provider/provider.dart';
 
 class CartBottomSheet extends StatelessWidget {
@@ -12,7 +13,7 @@ class CartBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    CartModel cart = Provider.of<CartModel>(context);
+    Cart cart = Provider.of<Cart>(context);
     // return DraggableScrollableSheet(
     //   initialChildSize: 1,
     //   maxChildSize: 1,
@@ -39,7 +40,7 @@ class CartBottomSheet extends StatelessWidget {
           Divider(),
           buildPriceInfo(cart),
           SizedBox(height: 8),
-          addToCardButton(cart),
+          addToCardButton(cart, context),
         ],
       ),
     );
@@ -59,7 +60,7 @@ class CartBottomSheet extends StatelessWidget {
     );
   }
 
-  Widget buildItemsList(CartModel cart) {
+  Widget buildItemsList(Cart cart) {
     return Expanded(
       child: ListView.builder(
         itemCount: cart.cartItems.length,
@@ -67,14 +68,10 @@ class CartBottomSheet extends StatelessWidget {
         itemBuilder: (context, index) {
           return Card(
             child: ListTile(
-              leading: CircleAvatar(backgroundImage: NetworkImage(cart.cartItems[index].image)),
-              title: Text('${cart.cartItems[index].name}', style: titleStyle4),
-              subtitle: Text('\$ ${cart.cartItems[index].price}'),
-              trailing: IconButton(
-                  icon: Icon(Icons.delete_forever),
-                  onPressed: () {
-                    cart.removeItem(cart.items[index]);
-                  }),
+              leading: CircleAvatar(backgroundImage: NetworkImage(cart.cartItems[index].food.image)),
+              title: Text('${cart.cartItems[index].food.name}', style: titleStyle4),
+              subtitle: Text('\$ ${cart.cartItems[index].food.price}'),
+              trailing: Text('x ${cart.cartItems[index].quantity}'),
             ),
           );
         },
@@ -99,10 +96,10 @@ class CartBottomSheet extends StatelessWidget {
     );
   }
 
-  Widget buildPriceInfo(CartModel cart) {
+  Widget buildPriceInfo(Cart cart) {
     double total = 0;
-    for (Food food in cart.cartItems) {
-      total += food.price;
+    for (CartModel cartModel in cart.cartItems) {
+      total += cartModel.food.price * cartModel.quantity;
     }
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -113,11 +110,16 @@ class CartBottomSheet extends StatelessWidget {
     );
   }
 
-  Widget addToCardButton(cart) {
+  Widget addToCardButton(cart, context) {
     return Center(
       child: RaisedButton(
         child: Text('Add to Cart', style: titleStyle1),
-        onPressed: cart.cartItems.length == 0 ? null : () {},
+        onPressed: cart.cartItems.length == 0
+            ? null
+            : () {
+                Navigator.of(context).pop();
+                Navigator.push(context, MaterialPageRoute(builder: (context) => CheckOutPage()));
+              },
         padding: EdgeInsets.symmetric(horizontal: 64, vertical: 12),
         color: mainColor,
         shape: StadiumBorder(),

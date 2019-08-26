@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      builder: (context) => CartModel(),
+      builder: (context) => Cart(),
       child: MaterialApp(
         title: 'Flutter Food Ordering',
         showSemanticsDebugger: false,

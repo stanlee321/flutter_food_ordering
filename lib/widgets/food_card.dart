@@ -42,7 +42,7 @@ class _FoodCardState extends State<FoodCard> {
           loadingBuilder: (context, Widget child, ImageChunkEvent progress) {
             if (progress == null) return child;
             return Padding(
-                padding: EdgeInsets.all(8),
+                padding: EdgeInsets.all(32),
                 child: CircularProgressIndicator(
                   value: progress.expectedTotalBytes != null ? progress.cumulativeBytesLoaded / progress.expectedTotalBytes : null,
                 ));
@@ -127,6 +127,7 @@ class _FoodCardState extends State<FoodCard> {
       duration: Duration(milliseconds: 100),
     );
     Scaffold.of(context).showSnackBar(snackBar);
-    Provider.of<CartModel>(context).addItem(food);
+    CartModel cartModel = CartModel(food: food, quantity: 1);
+    Provider.of<Cart>(context).addItem(cartModel);
   }
 }
